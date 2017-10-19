@@ -2,11 +2,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 import {HeroDetailComponent} from './components/hero-detail/hero-detail.component';
 import {HeroesComponent} from './components/heroes/heroes.component';
-import {HeroService} from "./services/hero-service.service";
-import {RouterModule} from "@angular/router";
+import {HeroService} from './services/hero-service.service';
+import {RouterModule} from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
@@ -42,5 +42,5 @@ export class AppModule {
 
 }
 
-voi por aca
-https://angular.io/tutorial/toh-pt5#add-heroes-to-the-dashboard
+//voi por aca
+//https://angular.io/tutorial/toh-pt5#add-heroes-to-the-dashboard
