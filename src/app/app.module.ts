@@ -1,26 +1,33 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
+import {AppRoutingModule} from './app-routing.module';
+
+// Imports for loading & configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import {InMemoryDataService} from './services/in-memory-data.service';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {HeroDetailComponent} from './components/hero-detail/hero-detail.component';
 import {HeroesComponent} from './components/heroes/heroes.component';
 import {HeroService} from './services/hero-service.service';
-import {RouterModule} from '@angular/router';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        InMemoryWebApiModule.forRoot(InMemoryDataService),
+        AppRoutingModule
+    ],
     declarations: [
         AppComponent,
         HeroDetailComponent,
         HeroesComponent,
         DashboardComponent
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        AppRoutingModule
     ],
     providers: [HeroService],
     bootstrap: [AppComponent]
@@ -28,6 +35,3 @@ import {AppRoutingModule} from './app-routing.module';
 export class AppModule {
 
 }
-
-//voi por aca
-//https://angular.io/tutorial/toh-pt5#add-heroes-to-the-dashboard

@@ -1,26 +1,29 @@
 import {Injectable} from '@angular/core';
-import {Hero} from "../classes/Hero";
+import {Hero} from '../classes/Hero';
+import {Http} from '@angular/http';
 
-const HEROES: Hero[] = [
-    {id: 11, name: 'Mr. Nice'},
-    {id: 12, name: 'Narco'},
-    {id: 13, name: 'Bombasto'},
-    {id: 14, name: 'Celeritas'},
-    {id: 15, name: 'Magneta'},
-    {id: 16, name: 'RubberMan'},
-    {id: 17, name: 'Dynama'},
-    {id: 18, name: 'Dr IQ'},
-    {id: 19, name: 'Magma'},
-    {id: 20, name: 'Tornado'}
-];
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class HeroService {
 
-    constructor() {
+    private http: Http;
+    private heroesUrl = '/api/heroes';  // URL to web api
+
+    constructor(http: Http) {
+        this.http = http;
     }
 
+
     getHeroes(): Promise<Hero[]> {
+        return this.http.get(this.heroesUrl)
+            .toPromise()
+            .then(function(response){
+                console.log(response);
+                return response.json();
+            })
+            .catch(this.handleError);
+        /*
         return Promise.resolve(HEROES);
         /* Esto se llama funciones flecha */
         /*
@@ -32,7 +35,16 @@ export class HeroService {
     }
 
     getHero(id: number): Promise<Hero> {
-        return this.getHeroes().then(heroes => heroes.find(value => value.id === id));
+        const url = `${this.heroesUrl}/${id}`;
+        return this.http.get(url)
+            .toPromise()
+            .then(response => response.json() as Hero)
+            .catch(this.handleError);
+    }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     }
 
 }
