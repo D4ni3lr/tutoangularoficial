@@ -35,3 +35,6 @@ import {HeroService} from './services/hero-service.service';
 export class AppModule {
 
 }
+
+
+https://angular.io/tutorial/toh-pt6#observables
