@@ -14,6 +14,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {HeroDetailComponent} from './components/hero-detail/hero-detail.component';
 import {HeroesComponent} from './components/heroes/heroes.component';
 import {HeroService} from './services/hero-service.service';
+import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import {HeroService} from './services/hero-service.service';
         AppComponent,
         HeroDetailComponent,
         HeroesComponent,
-        DashboardComponent
+        DashboardComponent,
+        HeroSearchComponent
     ],
     providers: [HeroService],
     bootstrap: [AppComponent]
@@ -37,4 +39,4 @@ export class AppModule {
 }
 
 
-https://angular.io/tutorial/toh-pt6#observables
+//https://angular.io/tutorial/toh-pt6#observables
