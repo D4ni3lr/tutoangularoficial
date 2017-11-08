@@ -20,7 +20,7 @@ export class HeroesComponent implements OnInit {
     }
 
     private loadHeroes(): void {
-        this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+        this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
     }
 
     onSelect(hero: Hero): void {
@@ -40,22 +40,29 @@ export class HeroesComponent implements OnInit {
         if (!name) {
             return;
         }
-        this.heroService.create(name)
-            .then(hero => {
-                console.log('se recibe desde crear');
-                console.log(hero);
+        this.heroService.addHero(new Hero(null, name))
+            .subscribe(hero => {
                 this.heroes.push(hero);
                 this.selectedHero = null;
             });
     }
 
     delete(hero: Hero): void {
+        this.heroes = this.heroes.filter(h => h !== hero);
+        this.heroService.deleteHero(hero).subscribe();
+    }
+
+    /*
+    delete(hero: Hero): void {
         this.heroService
-            .delete(hero.id)
+            .deleteHero(hero.id)
             .then(() => {
                 this.heroes = this.heroes.filter(h => h !== hero);
-                if (this.selectedHero === hero) { this.selectedHero = null; }
+                if (this.selectedHero === hero) {
+                    this.selectedHero = null;
+                }
             });
     }
+    */
 
 }
